@@ -1,11 +1,23 @@
+import { createStore } from "vuex";
+import demoData from "./modules/demoData";
+import demoDraw from "@/store/modules/demoDraw";
 
+// export default createStore({
+//   modules: {
+//     xxx: demoDraw,
+//     demoData,
+//   },
+// });
 
-import { createStore } from 'vuex'
-import demo from './modules/demo'
+const store = createStore({
+  /* options */
+});
 
+// register a module `myModule`
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+store.registerModule("myModule", {
+  demoData,
+});
 
-export default createStore({
-  modules: {
-    demo,
-
-  }});
+export default store;

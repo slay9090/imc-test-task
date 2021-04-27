@@ -1,7 +1,7 @@
 import { MutationTree, ActionTree } from "vuex";
 import {
   IDemoTableData,
-  IData
+  IClient,
 } from "@/types/interfaces/demo-table/IDemoTableData";
 
 export const state = (): IDemoTableData => ({
@@ -11,20 +11,22 @@ export const state = (): IDemoTableData => ({
 export type RootState = ReturnType<typeof state>;
 
 export const mutations: MutationTree<RootState> = {
-  setTableProp(store: IDemoTableData, data: IData[]) {
+  setTableData(store: IDemoTableData, data: IClient[]) {
     store.table = data;
   },
 };
 
 export const actions: ActionTree<RootState, RootState> = {
-  receiveTableProp({ commit}) {
-    commit('setTableProp' ,tableJson)
-  }
+  receiveTableData({ commit }) {
+    commit("setTableData", tableJson);
+  },
 };
 
 export const getters = {
-  getTableProp: (store: IDemoTableData) => store.table,
+  getTableData: (store: IDemoTableData) => store.table,
 };
+
+export default { state, actions, getters, mutations };
 
 // MOK DATA
 const tableJson: any[] = [
@@ -71,5 +73,3 @@ const tableJson: any[] = [
     _sex: 1,
   },
 ];
-
-export  default  {state,  actions, getters, mutations}

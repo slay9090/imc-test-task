@@ -1,5 +1,5 @@
-
 //
 export interface ITableHeader {
-    name: string
+  name: string;
+  key: string;
 }

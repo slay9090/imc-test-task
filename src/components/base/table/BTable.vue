@@ -1,32 +1,37 @@
 <template>
   <table border="1">
-<!--    <caption>-->
-<!--      Таблица -->
-<!--    </caption>-->
+    <!--    <caption>-->
+    <!--      Таблица -->
+    <!--    </caption>-->
     <tr>
-
-
-      <th v-for="item in tableHeads" v-bind:key="item.id">{{item.name}}</th>
-
+      <th v-for="item in tableHeads" :key="item.id">{{ item.name }}</th>
     </tr>
-    <tr>
-      <td>34,5</td>
-      <td>3,5</td>
-      <td>36</td>
-      <td>23</td>
+    <tr
+      v-for="(item, index) in dataSet"
+      :key="index"
+      @click="$emit('update:selectedRow', item)"
+    >
+      <td v-for="item in dataSet[index]" :key="item.id">{{ item }}</td>
     </tr>
   </table>
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue'
-import { ITableHeader } from "@/types/interfaces/base/ITable"
+import { PropType } from "vue";
+import { ITableHeader } from "@/types/interfaces/base/ITable";
 export default {
   name: "BTable",
+  emits: ["update:selectedRow"],
   props: {
     tableHeads: {
       required: true,
       type: Object as () => PropType<ITableHeader>,
+    },
+    dataSet: {},
+  },
+  methods: {
+    getRowNumber(index: number): void {
+      console.log(index);
     },
   },
 };

@@ -1,17 +1,16 @@
 <template>
   <div class="wrapper">
     <div class="table-box">
-      <!--      {{ tableData[0]._name }}-->
-
-      <b-table :table-heads="fields" />
+      <b-table
+        :table-heads="fields"
+        :data-set="tableData"
+        v-model:selectedRow="selectedTableRow"
+      />
     </div>
 
     <div class="form-box">
       form
-      <input
-        v-model="tableData[0]._name"
-        :style="{ width: `${width_input}px` }"
-      />
+      <input v-model="selectedTableRow._name" />
     </div>
   </div>
 </template>
@@ -26,10 +25,10 @@ export default defineComponent({
   components: { BTable },
   setup() {
     const store = useStore();
-    store.dispatch("receiveTableProp");
+    store.dispatch("receiveTableData");
     console.log(useStore());
     const tableData = computed(() => {
-      return store.getters["getTableProp"];
+      return store.getters["getTableData"];
     });
 
     const width_input: Ref<number> = ref(10);
@@ -41,7 +40,13 @@ export default defineComponent({
 
   data() {
     return {
-      fields: [{ name: "xxxx" }, { name: "yyyyy" }],
+      fields: [
+        { name: "ID", key: "id" },
+        { name: "Иностранец", key: "_foreigner" },
+        { name: "Имя", key: "_name" },
+        { name: "Пол", key: "_sex" },
+      ],
+      selectedTableRow: {},
     };
   },
 });

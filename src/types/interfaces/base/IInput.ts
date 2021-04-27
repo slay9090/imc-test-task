@@ -5,17 +5,18 @@
 // rv - ссылка на поле Таблицы
 // sl - описание справочника select-компонента
 
+import { inputType } from "@/types/enums/inputType";
 
-
-import {inputType} from "@/types/enums/inputType";
-
+export interface IInputProperty {
+  id: number;
+  ct: inputType;
+  cw: number;
+  gn: number;
+  ns: string;
+  rv: string;
+  sl?: object;
+}
 
 export interface IInput {
-    id: number
-    ct: inputType
-    cw: number
-    gn: number
-    ns: string
-    rv: string
-    sl?: object
+  formData: IInputProperty[];
 }

@@ -3,4 +3,12 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
-createApp(App).use(store).use(router).mount("#app");
+const app = createApp(App as any)
+app.use(router)
+app.use(store)
+app.mount('#app')
+
+
+
+import BTable from '@/components/base/table/BTable.vue'
+app.component("BTable", BTable);

@@ -11,7 +11,7 @@
       :key="index"
       @click="
         $emit('update:selectedRow', item);
-        setRowId(item.id);
+        setRowId({ id: item.id });
       "
       :class="{ selectedRow: item.id === rowId }"
     >
@@ -23,7 +23,8 @@
 <script lang="ts">
 import { PropType } from "vue";
 import { ITableHeader } from "@/types/interfaces/base/ITable";
-export default {
+import { defineComponent } from "vue";
+export default defineComponent({
   name: "BTable",
   emits: ["update:selectedRow"],
   props: {
@@ -36,7 +37,7 @@ export default {
 
   data() {
     return {
-      rowId: null as number,
+      rowId: null as any,
     };
   },
 
@@ -45,7 +46,7 @@ export default {
       this.rowId = id;
     },
   },
-};
+});
 </script>
 
 <style scoped>

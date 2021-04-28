@@ -6,12 +6,13 @@
         :data-set="tableData"
         v-model:selectedRow="selectedTableRow"
       />
-
-      <!--      {{formData}}-->
     </div>
 
     <div class="form-box">
-      <template v-for="(item, index) in formData" :key="index">
+      <template
+        v-for="(item, index) in sortByOrder(formData, 'gn')"
+        :key="index"
+      >
         <form-element
           :type="item.ct"
           :title="item.ns"
@@ -30,30 +31,6 @@
           </template>
         </form-element>
       </template>
-
-      <!--      <form-element :type="2" title="sdfdfs" v-model="selectedTableRow._sex">-->
-      <!--        <template #options>-->
-      <!--          <option-->
-      <!--            v-for="item in formData[2].sl"-->
-      <!--            :key="item.id"-->
-      <!--            :selected="selectedTableRow._sex === item.id"-->
-      <!--            :value="item.id"-->
-      <!--          >-->
-      <!--            {{ item.name }}-->
-      <!--          </option>-->
-      <!--        </template>-->
-      <!--      </form-element>-->
-
-      <!--      <form-element-->
-      <!--        :type="1"-->
-      <!--        title="inpt"-->
-      <!--        v-model="selectedTableRow._name"-->
-      <!--        style="width: 300px"-->
-      <!--      >-->
-      <!--      </form-element>-->
-
-      <!--      <form-element :type="3" title="chk" v-model="selectedTableRow._foreigner">-->
-      <!--      </form-element>-->
     </div>
   </div>
 </template>
@@ -98,6 +75,12 @@ export default defineComponent({
       selectedTableRow: {},
       test: 1,
     };
+  },
+
+  methods: {
+    sortByOrder(arr: [], key: string): [] {
+      return arr.sort((a, b) => parseFloat(a[key]) - parseFloat(b[key]));
+    },
   },
 });
 </script>

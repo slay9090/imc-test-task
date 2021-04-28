@@ -6,10 +6,24 @@
         :data-set="tableData"
         v-model:selectedRow="selectedTableRow"
       />
+
+      <!--      {{formData}}-->
     </div>
 
     <div class="form-box">
       form
+    ne moget   {{selectedTableRow._sex}}
+      <form-element
+          :type="2"
+          title="sdfdfs"
+          v-model="selectedTableRow._sex"
+      >
+        <template #options>
+          <option v-for="item in formData[2].sl" :key="item.id" :selected="selectedTableRow._sex === item.id" :value="item.id">{{item.name}}</option>
+        </template>
+
+      </form-element>
+
       <input v-model="selectedTableRow._name" />
     </div>
   </div>
@@ -18,22 +32,29 @@
 <script lang="ts">
 import { computed, defineComponent, ref, Ref } from "vue";
 
-import { useStore } from "vuex";
-import BTable from "@/components/base/table/BTable.vue";
+import { useStore } from "@/store";
+import FormElement from "@/components/formElement.vue";
+// import { inputType } from "@/types/enums/inputType";
 
 export default defineComponent({
-  components: { BTable },
+  components: { FormElement },
+
   setup() {
     const store = useStore();
-    store.dispatch("receiveTableData");
-    console.log(useStore());
+    // store.dispatch("draws/receiveFormData");
+    store.dispatch("clients/receiveData");
+
     const tableData = computed(() => {
-      return store.getters["getTableData"];
+      return store.getters["clients/getData"].table;
     });
 
-    const width_input: Ref<number> = ref(10);
+    const formData = computed(() => {
+      return store.getters["clients/getData"].formData;
+    });
 
-    return { tableData, width_input };
+    // const width_input: Ref<number> = ref(10);
+
+    return { tableData, formData };
   },
 
   name: "demo",
@@ -47,6 +68,7 @@ export default defineComponent({
         { name: "Пол", key: "_sex" },
       ],
       selectedTableRow: {},
+      test: 1,
     };
   },
 });

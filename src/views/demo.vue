@@ -11,20 +11,34 @@
     </div>
 
     <div class="form-box">
-      form
-    ne moget   {{selectedTableRow._sex}}
-      <form-element
-          :type="2"
-          title="sdfdfs"
-          v-model="selectedTableRow._sex"
-      >
+      form ne moget {{ selectedTableRow._sex }}
+      <form-element :type="2" title="sdfdfs" v-model="selectedTableRow._sex">
         <template #options>
-          <option v-for="item in formData[2].sl" :key="item.id" :selected="selectedTableRow._sex === item.id" :value="item.id">{{item.name}}</option>
+          <option
+            v-for="item in formData[2].sl"
+            :key="item.id"
+            :selected="selectedTableRow._sex === item.id"
+            :value="item.id"
+          >
+            {{ item.name }}
+          </option>
         </template>
-
       </form-element>
 
-      <input v-model="selectedTableRow._name" />
+      <form-element :type="1" title="inpt" v-model="selectedTableRow._name">
+        <!--        <template #options>-->
+        <!--          <option-->
+        <!--            v-for="item in formData[2].sl"-->
+        <!--            :key="item.id"-->
+        <!--            :selected="selectedTableRow._sex === item.id"-->
+        <!--            :value="item.id"-->
+        <!--          >-->
+        <!--            {{ item.name }}-->
+        <!--          </option>-->
+        <!--        </template>-->
+      </form-element>
+
+      <!--      <input v-model="selectedTableRow._name" />/-->
     </div>
   </div>
 </template>
@@ -33,8 +47,7 @@
 import { computed, defineComponent, ref, Ref } from "vue";
 
 import { useStore } from "@/store";
-import FormElement from "@/components/formElement.vue";
-// import { inputType } from "@/types/enums/inputType";
+import FormElement from "@/components/ElementForm.vue";
 
 export default defineComponent({
   components: { FormElement },

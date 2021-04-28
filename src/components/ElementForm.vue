@@ -1,6 +1,6 @@
 <template>
   <div class="form-element">
-    <div >{{ title }}</div>
+    <div>{{ title }}</div>
 
     <div>
       <component :is="getComponent(type)" v-bind="$attrs" :value="modelValue">
@@ -9,20 +9,18 @@
         </template>
       </component>
     </div>
-
   </div>
 </template>
 
 <script lang="ts">
-
 import BRadio from "@/components/base/controls/BRadio.vue";
 import BSelect from "@/components/base/controls/BSelect.vue";
-import BTextInput from "@/components/base/inputs/BTextField.vue";
+import BTextField from "@/components/base/inputs/BTextField.vue";
 
 export default {
   name: "formElement",
 
-  components: { BSelect, BRadio, BTextInput },
+  components: { BSelect, BRadio, BTextField },
   props: {
     type: {
       required: true,
@@ -31,19 +29,19 @@ export default {
     title: {
       type: String,
     },
-    modelValue: Number,
+    modelValue: {},
   },
   methods: {
     getComponent(type: number) {
       switch (type) {
         case 1:
-          return BTextInput.name;
+          return BTextField.name;
         case 2:
           return BSelect.name;
         case 3:
           return BRadio.name;
         default:
-          return BTextInput.name;
+          return BTextField.name;
       }
     },
   },
@@ -51,9 +49,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
 .form-element {
   text-align: left;
 }
-
 </style>

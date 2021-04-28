@@ -1,12 +1,10 @@
 <template>
-
   <select v-bind="$attrs" v-model="innerValue">
     <slot name="options"></slot>
   </select>
-
 </template>
 
-<script >
+<script>
 export default {
   name: "BSelect",
   props: {
@@ -20,9 +18,8 @@ export default {
   watch: {
     value(newVal) {
       this.innerValue = newVal;
-    }
+    },
   },
-
 };
 </script>
 

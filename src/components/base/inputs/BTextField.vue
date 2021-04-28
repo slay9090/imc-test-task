@@ -1,9 +1,9 @@
 <template>
-  <input v-bind="$attrs" v-model="innerValue" />
+  <input type="text" v-bind="$attrs" v-model="innerValue" />
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, watch } from "vue";
+import { defineComponent } from "vue";
 import { watcher } from "@/components/base/compositions/watcher";
 
 export default defineComponent({
@@ -11,20 +11,8 @@ export default defineComponent({
   props: {
     value: String,
   },
-
   setup(props) {
-    const innerValue = ref(...watcher(props));
-    // watch(
-    //   () => props.value,
-    //   (newValue) => {
-    //     innerValue.value = newValue;
-    //   }
-    // );
-    // return {
-    //   innerValue,
-    // };
-
-    return { innerValue };
+    return { ...watcher(props) };
   },
 });
 </script>

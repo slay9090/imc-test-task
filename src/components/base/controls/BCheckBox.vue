@@ -1,17 +1,15 @@
 <template>
-  <select v-bind="$attrs" v-model="innerValue">
-    <slot name="options"></slot>
-  </select>
+  <input type="checkbox" v-bind="$attrs" v-model="innerValue" />
 </template>
 
 <script lang="ts">
-import { watcher } from "@/components/base/compositions/watcher";
 import { defineComponent } from "vue";
+import { watcher } from "@/components/base/compositions/watcher";
 
 export default defineComponent({
-  name: "BSelect",
+  name: "BCheckBox",
   props: {
-    value: {},
+    value: Boolean,
   },
   setup(props) {
     return { ...watcher(props) };

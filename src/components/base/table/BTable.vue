@@ -9,7 +9,11 @@
     <tr
       v-for="(item, index) in dataSet"
       :key="index"
-      @click="$emit('update:selectedRow', item)"
+      @click="
+        $emit('update:selectedRow', item);
+        setRowId(item.id);
+      "
+      :class="{ selectedRow: item.id === rowId }"
     >
       <td v-for="item in dataSet[index]" :key="item.id">{{ item }}</td>
     </tr>
@@ -29,12 +33,23 @@ export default {
     },
     dataSet: {},
   },
+
+  data() {
+    return {
+      rowId: null as number,
+    };
+  },
+
   methods: {
-    getRowNumber(index: number): void {
-      console.log(index);
+    setRowId(id: number): void {
+      this.rowId = id;
     },
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.selectedRow {
+  background: peachpuff;
+}
+</style>

@@ -1,24 +1,19 @@
-# test
+# Тестовое задание ООО "ИМЦ"
 
-## Project setup
-```
-npm install
-```
+### Использованные технологии:
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+- Vue.js 3
+- TypeScript
+- Vuex
+- Router
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### Тестирование и отладка:
 
-### Lints and fixes files
-```
-npm run lint
-```
+- DevTools браузера, наше всё, от вестки до производительности 
+- console.log() да, да.. точки останова для слабых)
+- eslint помогает выявить потенциальные проблемы, не отключайте его
+- TypeScript Console там по ТСу 
+- Vue.js devtools плагин, Vuex удобно чекать
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
